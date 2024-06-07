@@ -30,13 +30,16 @@ export default class GameRoom
         this.Broadcast ('SpawnEntity', player.character.getSpawnData(false));
     }
 
-    onMessage (id:string, ...args:any[]) : void 
+    onMessage (player:Player, id:string, ...args:any[]) : void 
     {
         switch (id)
         {
             case 'Position':
-                this.Broadcast ('Position', args[0], args[1], args[2]);
+                this.Broadcast ('Position', player.character._id, args[0], args[1]);
             break;
+            case 'Chat':
+                this.Broadcast ('Chat', player.character._id, args[0])
+                break;
         }
     }
   }
