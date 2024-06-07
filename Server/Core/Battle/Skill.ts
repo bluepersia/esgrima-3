@@ -1,12 +1,11 @@
 import Entity from "../Entity";
 import GameData from "../GameData";
 import GameItem from "../GameItem";
-import IUpdatable from "../Updatable";
 import Sequence from "./Sequence";
 
 
 
-export default class Skill extends GameItem implements IUpdatable
+export default class Skill extends GameItem 
 {
     levels:SkillLevel[] = [];
     level:number = 1;
@@ -27,7 +26,7 @@ export default class Skill extends GameItem implements IUpdatable
 }
 
 
-export class SkillLevel extends GameData implements IUpdatable
+export class SkillLevel extends GameData
 {
     sequence:Sequence = new Sequence ();
     manaCost:number = 0;

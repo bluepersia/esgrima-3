@@ -32,6 +32,14 @@ export default class Entity extends GameObject
     walkSpeed:number = 4;
 
     skillUsing:SkillLevel|null = null;
+    
+    moveX = 0;
+    moveY = 0;
+
+    state:State = State.Idle;
+
+    battlePosition:[number, number] = [0, 0];
+
 
     get isAlive () : boolean {
         return this.health.current > 0;
@@ -41,13 +49,6 @@ export default class Entity extends GameObject
     {
         return this.stats.find (stat => stat.id === id)!;
     }
-
-    moveX = 0;
-    moveY = 0;
-
-    state:State = State.Idle;
-
-    battlePosition:[number, number] = [0, 0];
 
     update () : void 
     {

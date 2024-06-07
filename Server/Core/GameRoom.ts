@@ -15,6 +15,12 @@ export default class GameRoom
         this.players.forEach (player => player.send (id, args));
     }
 
+   
+ }
+
+
+ export class TownRoom extends GameRoom
+  {
     onPlayerJoined (player:Player) : void 
     {
         this.players.forEach (p => {
@@ -23,9 +29,17 @@ export default class GameRoom
         })
         this.Broadcast ('SpawnEntity', player.character.getSpawnData(false));
     }
- }
 
-
+    onMessage (id:string, ...args:any[]) : void 
+    {
+        switch (id)
+        {
+            case 'Position':
+                this.Broadcast ('Position', args[0], args[1], args[2]);
+            break;
+        }
+    }
+  }
  export class BattleRoom extends GameRoom
  {
     gameboard:Gameboard = new Gameboard ();

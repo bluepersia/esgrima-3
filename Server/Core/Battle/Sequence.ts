@@ -1,9 +1,8 @@
 import Entity from "../Entity";
-import IUpdatable from "../Updatable";
 import Effect from "./Effect";
 
 
-export default class Sequence implements IUpdatable
+export default class Sequence
 {
     effects:Map<number, Effect> = new Map<number, Effect>();
 

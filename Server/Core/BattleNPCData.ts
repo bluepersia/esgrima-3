@@ -1,5 +1,6 @@
 import { SkillLevel } from './Battle/Skill';
 import GameData from './GameData';
+import fs from 'fs';
 
 
 export default class BattleNPCData extends GameData
@@ -11,8 +12,10 @@ export default class BattleNPCData extends GameData
     heal:number = 0;
     skills:SkillLevel[] = [];
 
-    public static Load (id:string, callback: (data:BattleNPCData) => void) : void 
+    public static Load (id:string) : BattleNPCData
     {
-        fetch (`../Content/BattleNPCs/${id}`).then (res => res.json()).then (json => callback (JSON.parse (json) as BattleNPCData));
+        const str =fs.readFileSync(`../Content/BattleNPCs/${id}.json`, 'utf8');
+
+        return JSON.parse (str) as BattleNPCData;
     }
 }
